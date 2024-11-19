@@ -6,3 +6,6 @@
 2. Jayden Woodall
     - Student ID: 032379215
     - Email: Jayden.woodall01@student.csulb.edu
+3. Mischa Waydo
+   - Student ID: 031959224
+   - Email: mischa.waydo01@student.csulb.edu
