@@ -9,3 +9,6 @@
 3. Mischa Waydo
     - Student ID: 031959224
     - Email: mischa.waydo01@student.csulb.edu
+4. Edwin Sedano
+    - Student ID: 025668238 
+    - Email: edwin.sedano@student.csulb.edu
