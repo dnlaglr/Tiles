@@ -15,3 +15,6 @@
 5. Nicholas Parra
     - Student ID: 031747116
     - Email: nicholas.parra02@student.csulb.edu
+6. Nick Vincent Quinto
+    - Student ID: 029876117
+    - Email: nickvincent.quinto01@student.csulb.edu
