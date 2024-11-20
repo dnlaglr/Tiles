@@ -12,3 +12,6 @@
 4. Edwin Sedano
     - Student ID: 025668238 
     - Email: edwin.sedano@student.csulb.edu
+5. Nicholas Parra
+    - Student ID: 031747116
+    - Email: nicholas.parra02@student.csulb.edu
