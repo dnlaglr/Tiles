@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 const navLinks = [
   {
@@ -10,12 +11,14 @@ const navLinks = [
     name: 'Activity',
   },
   {
-    path: '/friends',
-    name: 'Friends',
+    path: '/groups',
+    name: 'Groups',
   }
 ]
 
 export default function Navbar() {
+  const auth = useAuth();
+
   return (
     <div className='flex justify-center items-center w-screen h-14 px-64'>
       <div className='flex flex-row justify-between items-center w-full h-full'>
@@ -29,14 +32,23 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <div className='flex flex-row justify-between items-center w-52'>
-          <Link to='/signup' className='flex justify-center items-center w-24 bg-black hover:bg-white text-white hover:text-black py-1 rounded-lg border-2 border-black'>
-            <h1 className='text-base font-semibold'>Sign Up</h1>
-          </Link>
-          <Link to='/login' className='flex justify-center items-center w-24 bg-black hover:bg-white text-white hover:text-black py-1 rounded-lg border-2 border-black'>
-            <h1 className='text-base font-semibold'>Log In</h1>
-          </Link>
-        </div>
+        {auth?.currentUser == null || auth?.currentUser == undefined ? 
+          <div className='flex flex-row justify-between items-center w-52'>
+            <Link to='/auth/signup' className='flex justify-center items-center w-24 bg-black hover:bg-white text-white hover:text-black py-1 rounded-lg border-2 border-black'>
+              <h1 className='text-base font-semibold'>Sign Up</h1>
+            </Link>
+            <Link to='/auth/login' className='flex justify-center items-center w-24 bg-black hover:bg-white text-white hover:text-black py-1 rounded-lg border-2 border-black'>
+              <h1 className='text-base font-semibold'>Log In</h1>
+            </Link>
+          </div>
+          :
+          <div className='flex justify-center items-center'>
+            <Link to='/auth/profile' className='flex justify-center items-center w-24 bg-black hover:bg-white text-white hover:text-black py-1 rounded-lg border-2 border-black'>
+              <h1 className='text-base font-semibold'>Profile</h1>
+            </Link>
+          </div>
+        }
+
       </div>
     </div>
   )
