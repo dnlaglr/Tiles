@@ -2,22 +2,23 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
-export default function SignUp() {
-  const [userInfo, setUserInfo] = useState({ email: '', password: '', confirmPassword: '' });
+export default function LogIn() {
+  const [userInfo, setUserInfo] = useState({ email: '', password: '' });
   const auth = useAuth();
   const navigate = useNavigate();
 
-  function createUserAccount() { 
-    if (userInfo.password == userInfo.confirmPassword && userInfo.email != '' && userInfo.password != '') {
-      auth?.emailSignUp(userInfo.email, userInfo.password).then((user) => {
-        console.log("User account created successfully.");
+  function logInUser() {
+    if (userInfo.email != '' && userInfo.password != '') {
+      auth?.emailLogIn(userInfo.email, userInfo.password).then((user) => {
+        console.log("User logged in successfully.");
         console.log(user);
       });
-
+      
       navigate('/map');
     } else {
       console.error("User information is invalid.");
     }
+
   }
 
   useEffect(() => {
@@ -41,12 +42,8 @@ export default function SignUp() {
           <label className='text-gray-900 text-base font-semibold'>Password</label>
           <input type='password' id='password' value={userInfo.password} onChange={(e) => setUserInfo({...userInfo, password: e.target.value})} className='w-96 h-10 px-2 border-2 border-gray-900 rounded-lg' />
         </div>
-        <div className='flex flex-col justify-center items-start w-full mb-3'>
-          <label className='text-gray-900 text-base font-semibold'>Confirm Password</label>
-          <input type='password' id='confirmPassword' value={userInfo.confirmPassword} onChange={(e) => setUserInfo({...userInfo, confirmPassword: e.target.value})} className='w-96 h-10 px-2 border-2 border-gray-900 rounded-lg' />
-        </div>
-        <button onClick={createUserAccount} className='w-96 h-10 bg-black hover:bg-white text-white hover:text-black rounded-lg border-2 border-black mt-4'>
-          <h1 className='text-lg font-semibold'>Sign Up</h1>
+        <button onClick={logInUser} className='w-96 h-10 bg-black hover:bg-white text-white hover:text-black rounded-lg border-2 border-black mt-4'>
+          <h1 className='text-lg font-semibold'>Log In</h1>
         </button>
       </div>
     </div>
