@@ -1,7 +1,7 @@
 import { collection, DocumentData, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../firebase';
 
-export default async function getTiles(userID: string) : Promise<DocumentData> {
+export default async function getTiles(userID: string) : Promise<DocumentData[]> {
   try {
     const groupsRef = collection(db, "groups");
     const groupsQuery = query(groupsRef, where("memberIDs", "array-contains", userID));
