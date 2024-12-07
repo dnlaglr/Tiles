@@ -9,13 +9,14 @@ import LogIn from './views/login'
 import Profile from './views/profile'
 import Activity from './views/activity'
 import Groups from './views/groups'
+import UserLocation from './components/UserLocation'
 
 function Layout() {
   return (
-    <AuthProvider>
+    <>
       <Navbar />
       <Outlet />  {/* Render the child component */}
-    </AuthProvider>
+    </>
   )
 }
 
@@ -59,5 +60,8 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')!).render(
-  <RouterProvider router={router} />
+  <AuthProvider>
+    <UserLocation />
+    <RouterProvider router={router} />
+  </AuthProvider>
 )
