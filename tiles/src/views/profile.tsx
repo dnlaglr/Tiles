@@ -9,6 +9,8 @@ import profilePlaceholder from '../assets/profile/profile-placeholder.jpg'
 import getGroups from '../util/groups/getGroups';
 import getUser from '../util/users/getUser';
 import deleteUserData from '../util/users/deleteUser';
+import addTile from '../util/map/addTile';
+import { findTile } from '../util/tile/tileUtil';
 
 export default function Profile() {
   const auth = useAuth();
@@ -25,6 +27,17 @@ export default function Profile() {
     if (auth?.currentUser) {
       deleteUserData(auth, auth?.currentUser?.uid);
       navigate('/auth/signup');
+    }
+  }
+
+  async function demoAddTile() {
+    if (auth?.currentUser) {
+      try {
+        const tileCenter = findTile({ lat: 33.7762426, lng: -118.0620816 });
+        await addTile(auth.currentUser.uid, { lat: tileCenter.center.lat, lng: tileCenter.center.lng })
+      } catch (err) {
+        console.error("[ ERROR ] Could not add demo tile: ", err);
+      }
     }
   }
 
@@ -93,6 +106,11 @@ export default function Profile() {
               </div>
             </div>
           </div>
+
+            {/* Demo Add Tile Button */}
+            <div className='flex justify-center items-center w-full mt-16'>
+              <button onClick={demoAddTile} className='w-[60%] h-10 bg-green-700 hover:bg-white text-white hover:text-green-700 rounded-lg border-2 border-green-700 mt-4'>[ DEMO ] Add Tile</button>
+            </div>
         </div>
       </div>
     </div>
