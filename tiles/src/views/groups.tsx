@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
 import getGroups from '../util/groups/getGroups';
 import joinGroup from '../util/groups/joinGroup';
+import { faPlus } from '@fortawesome/free-solid-svg-icons/faPlus';
 
 export default function Groups() {
   const auth = useAuth();
@@ -63,7 +64,7 @@ export default function Groups() {
           <div className='flex flex-1 flex-col items-center w-full overflow-y-scroll'>
             {groups.map((group, index) => {
               return (
-                <div key={index} className='flex flex-col w-[95%] px-4 py-2 bg-gray-50 rounded-lg'>
+                <div key={index} className='flex flex-col w-[95%] px-4 py-2 bg-gray-50 rounded-lg mb-2'>
                   <div className='flex flex-row justify-between items-center'>
                     <h2 className='text-lg text-gray-900 font-semibold'>{group.groupName}</h2>
                     <h3>({group.memberIDs.length} / 5)</h3>
@@ -72,6 +73,12 @@ export default function Groups() {
               )
             })
             }
+            <div className='flex flex-col w-[95%] px-4 py-2 bg-gray-50 rounded-lg cursor-pointer'>
+              <div className='flex flex-row justify-between items-center'>
+                <h2 className='text-lg text-gray-900 font-semibold'>Create Group</h2>
+                <FontAwesomeIcon icon={faPlus} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
