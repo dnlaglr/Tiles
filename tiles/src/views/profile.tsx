@@ -30,10 +30,30 @@ export default function Profile() {
     }
   }
 
-  async function demoAddTile() {
+  async function demoAddTile1() {
     if (auth?.currentUser) {
       try {
-        const tileCenter = findTile({ lat: 33.7762426, lng: -118.0620816 });
+        const tileCenter = findTile({ lat: 33.8017917, lng: -118.0949354 });
+        await addTile(auth.currentUser.uid, { lat: tileCenter.center.lat, lng: tileCenter.center.lng })
+      } catch (err) {
+        console.error("[ ERROR ] Could not add demo tile: ", err);
+      }
+    }
+  }
+  async function demoAddTile2() {
+    if (auth?.currentUser) {
+      try {
+        const tileCenter = findTile({ lat: 33.7650848, lng: -118.1425312 });
+        await addTile(auth.currentUser.uid, { lat: tileCenter.center.lat, lng: tileCenter.center.lng })
+      } catch (err) {
+        console.error("[ ERROR ] Could not add demo tile: ", err);
+      }
+    }
+  }
+  async function demoAddTile3() {
+    if (auth?.currentUser) {
+      try {
+        const tileCenter = findTile({ lat: 33.8010265, lng: -118.1680394 });
         await addTile(auth.currentUser.uid, { lat: tileCenter.center.lat, lng: tileCenter.center.lng })
       } catch (err) {
         console.error("[ ERROR ] Could not add demo tile: ", err);
@@ -109,7 +129,13 @@ export default function Profile() {
 
             {/* Demo Add Tile Button */}
             <div className='flex justify-center items-center w-full mt-16'>
-              <button onClick={demoAddTile} className='w-[60%] h-10 bg-green-700 hover:bg-white text-white hover:text-green-700 rounded-lg border-2 border-green-700 mt-4'>[ DEMO ] Add Tile</button>
+              <button onClick={demoAddTile1} className='w-[60%] h-10 bg-green-700 hover:bg-white text-white hover:text-green-700 rounded-lg border-2 border-green-700 mt-4'>[ DEMO ] Add Tile 1</button>
+            </div>
+            <div className='flex justify-center items-center w-full mt-4'>
+              <button onClick={demoAddTile2} className='w-[60%] h-10 bg-green-700 hover:bg-white text-white hover:text-green-700 rounded-lg border-2 border-green-700 mt-4'>[ DEMO ] Add Tile 2</button>
+            </div>
+            <div className='flex justify-center items-center w-full mt-4'>
+              <button onClick={demoAddTile3} className='w-[60%] h-10 bg-green-700 hover:bg-white text-white hover:text-green-700 rounded-lg border-2 border-green-700 mt-4'>[ DEMO ] Add Tile 3</button>
             </div>
         </div>
       </div>
