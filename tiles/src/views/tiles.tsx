@@ -7,7 +7,6 @@ import { useAuth } from '../contexts/AuthContext';
 import { Polygon } from '../components/Polygon';
 
 import getTiles from '../util/map/getTiles';
-import generateTilePath from '../util/map/generateTilePath';
 import { findTile, getTilePathBounds } from '../util/tile/tileUtil';
 
 export default function Tiles() {
@@ -40,16 +39,16 @@ export default function Tiles() {
           defaultZoom={14}
           disableDefaultUI={true}
         >
-          {mapTiles.length === 0
+          {!mapTiles || mapTiles.length === 0
             ? null
-            : mapTiles.map((memberObject, index: Key) => {
+            : mapTiles.map((memberObject: any, index: Key) => {
                 if (!memberObject.tiles || memberObject.tiles.length === 0) {
                   return null;
                 }
 
                 console.log('member object:', memberObject);
 
-                return memberObject.tiles.map((tilePoint, tileIndex) => {
+                return memberObject.tiles.map((tilePoint: any, tileIndex: Key) => {
                   console.log("tilePoint_lng", tilePoint._long)
                   const foundTile = findTile({lat: tilePoint._lat, lng: tilePoint._long});
                   const paths = getTilePathBounds(foundTile.bounds.north, foundTile.bounds.south, foundTile.bounds.east, foundTile.bounds.west);
