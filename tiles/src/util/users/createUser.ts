@@ -7,7 +7,8 @@ export default async function createUser(userData: any) {
     const userDocRef = await addDoc(usersRef, {
       displayName: userData.displayName,
       email: userData.email,
-      userID: userData.userID
+      userID: userData.userID,
+      joinedGroups: [],
     });
 
     console.log("[ INFO ] User document created with ID: ", userDocRef.id);
